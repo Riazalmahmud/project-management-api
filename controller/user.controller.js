@@ -14,16 +14,16 @@ const Users = require("../models/User.model");
 const validator = require('validator');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
+
+
+
 /** Register a new user
  * Post:  http://localhost:3000/api/v1/user
  * @param: {
-    "name": "riaz hossen",
-  "email": "riazalmahmud0111@gmail.com",
-  "password": "Ri@zalmahmud1234",
-  "confirmPassword": "Ri@zalmahmud1234",
-  "role": "admin",
-  "isVerified": false,
-  "isActive": true,
+  "userName": "Riaz",
+  "email": "users041@gmail.com",
+  "password": "123456",
+  "confirmPassword": "123456",
   "status": "active"
 }
 */
@@ -32,13 +32,13 @@ exports.createUser = async (req, res, next) => {
     const user = await createUserService(req.body);
     const { password: pwd, ...others } = user.toObject();
     res.status(200).json({
-      status: "success",
+      status: true,
       message: "user created successfully",
       data: others,
     });
   } catch (error) {
     res.status(400).json({
-      status: "fail",
+      status: false,
       massage: "couldn't not fail create user",
       data: error.message,
     });
@@ -116,13 +116,13 @@ exports.findUser = async (req, res, next) => {
     if (!email || !password) {
       return res
         .status(400)
-        .json({ status: "fail", massage: "email and password are required" });
+        .json({ status: false, massage: "email and password are required" });
     }
     const user = await getUserService(email);
 
     if (!user) {
       return res.status(401).json({
-        status: "fail",
+        status: false,
         massage: "could not be found email and password",
       });
     }
@@ -131,27 +131,27 @@ exports.findUser = async (req, res, next) => {
 
     if (!isPasswordValid) {
       return res.status(403).json({
-        status: "fail",
+        status: false,
         massage: "password is invalid",
       });
     }
     if (user.status !== "active") {
       return res.status(401).json({
-        status: "fail",
+        status: false,
         massage: "user is not active",
       });
     }
     const token = generateToken(user);
     const { password: pwd, ...others } = user.toObject();
     res.status(200).json({
-      status: "success",
+      status: true,
       message: "user get successfully",
       data: others,
       token: token,
     });
   } catch (error) {
     res.status(400).json({
-      status: "fail",
+      status: false,
       massage: "couldn't not fail get user",
       data: error.message,
     });

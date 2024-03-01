@@ -12,7 +12,7 @@ const userData = await User.find({}).populate("members")
 return userData
 }
 exports.getUserService = async(email)=>{
-const userData = await User.findOne({email: email}).populate("members")
+const userData = await User.findOne({email: email})
 return userData
 }
 
