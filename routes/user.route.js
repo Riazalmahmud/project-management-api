@@ -9,7 +9,7 @@ userRoute.post("/", userController.createUser)
 userRoute.get("/", userController.getUser)
 userRoute.put("/changePassword/:id",userController.changePassword)
 userRoute.post("/login",userController.findUser)
-userRoute.get("/me",userVerifyMiddleware, userController.getMe)
+userRoute.get("/getMe",userVerifyMiddleware, userController.getMe)
 userRoute.post("/forget-password", userController.forgetPassword)
 userRoute.post("/reset-password/:token", userController.resetPassword)
 

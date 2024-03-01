@@ -173,7 +173,7 @@ exports.getMe = async (req, res) => {
     res.status(200).json({
       status: "success",
       message: "user get successfully",
-      data: others,
+      data: user,
     });
   } catch (error) {
     res.status(400).json({
