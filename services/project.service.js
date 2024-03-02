@@ -9,3 +9,7 @@ exports.getAllProjectService = async()=>{
 const projectData = await Project.find({})
 return projectData
 }
+exports.deleteSingleProjectService = async(id)=>{
+const projectData = await Project.deleteOne({_id: id})
+return projectData
+}
