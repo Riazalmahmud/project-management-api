@@ -1,7 +1,7 @@
 
-const Team = require("../models/Team.model")
+const User = require("../models/User.model")
 
-exports.createTeamService = async(team)=>{
-const TeamData = await Team.create(team)
-return TeamData
+exports.createTeamService = async(user)=>{
+const users = await User.create(user)
+return users
 }

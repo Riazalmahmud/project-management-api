@@ -1,5 +1,5 @@
 const { createTeamService } = require("../services/team.service");
-
+const User = require("../models/User.model");
 /** Register a new user
  * Post:  http://localhost:3000/api/v1/team
  * @param: {
@@ -10,12 +10,18 @@ const { createTeamService } = require("../services/team.service");
 }
 */
 exports.createTeam = async (req, res, next) => {
+  const parentUsers = req.body.parentUserId
   try {
-    const user = await createTeamService(req.body);
+    const users = await createTeamService(req.body);
+    console.log(users)
+    const find = await User.find({_id:users._id});
+    console.log(find)
+    find.teams.push(team._id)
+    find.save()
     res.status(200).json({
       status: true,
       message: " created task successfully",
-      data: user,
+      data: team,
     });
   } catch (error) {
     res.status(400).json({

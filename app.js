@@ -4,6 +4,7 @@ const cors = require('cors')
 const userRoute = require("./routes/user.route")
 const tamRoute = require("./routes/team.route")
 const taskRoute = require("./routes/task.route")
+const projectRoute = require("./routes/project.route")
 const app = express()
 app.use(cors())
 app.use(express.urlencoded({ extended: true }))
@@ -12,6 +13,7 @@ app.use(express.json())
 app.use("/api/v1/user", userRoute)
 app.use("/api/v1/team", tamRoute)
 app.use("/api/v1/task", taskRoute)
+app.use("/api/v1/project", projectRoute)
 
 
 
